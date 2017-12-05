@@ -1,0 +1,37 @@
+{
+  "name": "service-techno-import",
+  "version": "1.0.0",
+  "description": "Techno Import's service of FindMyRecords",
+  "main": "lib",
+  "author": "Elliot Maincourt <e.maincourt@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "babel src -d lib",
+    "start": "node lib/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "boom": "^7.1.1",
+    "cheerio": "^1.0.0-rc.2",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "hapi": "^17.1.1",
+    "joi": "^13.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.5.1"
+  }
+}

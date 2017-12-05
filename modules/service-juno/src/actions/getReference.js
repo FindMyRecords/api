@@ -1,9 +1,8 @@
 import axios from 'axios';
-import Boom from 'boom';
 import cheerio from 'cheerio';
 import flatten from 'lodash.flatten';
 import Joi from 'joi';
-import { baseURL, selectors } from '../../config.json';
+import { baseURL, selectors, defaultReturnValue } from '../../config.json';
 
 const client = axios.create({ baseURL });
 
@@ -12,10 +11,10 @@ function getText(item, selector) {
 }
 
 function processResultItem(item, reference) {
-  const artists = getText(selectors.artists);
-  const title = getText(selectors.title);
-  const price = getText(selectors.price);
-  const available = getText(selectors.available).includes('in stock');
+  const artists = getText(item, selectors.artists);
+  const title = getText(item, selectors.title);
+  const price = getText(item, selectors.price);
+  const available = getText(item, selectors.available).includes('in stock');
   const match = flatten([reference.artists]).reduce(
     (acc, artist) => artists.includes(artist.toLowerCase()) && acc,
     true,
@@ -25,45 +24,46 @@ function processResultItem(item, reference) {
   };
 }
 
+async function handler({ query }) {
+  try {
+    const qs = [flatten([query.artists]), query.title].join('+').replace(/ /g, '+');
+    const $ = cheerio.load((await client.get(qs)).data);
+    const match = $('.dv-item')
+      .map((i, el) => processResultItem($(el), query))
+      .get()
+      .find(item => item.match);
+    if (match) {
+      return match;
+    }
+    return defaultReturnValue;
+  } catch (err) {
+    return defaultReturnValue;
+  }
+}
+
 export default {
   method: 'GET',
   path: '/reference',
-  handler: async ({ query }) => {
-    try {
-      const qs = [flatten([query.artists]), query.title].join('+').replace(/ /g, '+');
-      const $ = cheerio.load((await client.get(qs)).data);
-      const match = $('.dv-item')
-        .map((i, el) => processResultItem($(el), query))
-        .get()
-        .find(item => item.match);
-      if (match) {
-        return match;
-      }
-      return {};
-    } catch (err) {
-      return Boom.boomify(err);
-    }
-  },
   config: {
     validate: {
       query: {
         artists: Joi.alternatives().try(
-          Joi.string().required(),
+          Joi.string(),
           Joi.array().items(Joi.string()),
-        ),
+        ).required(),
         title: Joi.string().required(),
       },
     },
+    handler,
     response: {
       status: {
         200: {
-          artists: Joi.string().required(),
-          title: Joi.string().required(),
+          artists: Joi.string().required().allow(null),
+          title: Joi.string().required().allow(null),
           available: Joi.bool().required(),
           price: Joi.string().required(),
           match: Joi.bool().required(),
         },
-        204: Joi.object().empty(),
       },
     },
   },

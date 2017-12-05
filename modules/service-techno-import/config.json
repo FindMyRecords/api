@@ -1,0 +1,19 @@
+{
+  "baseURL": "http://www.redeyerecords.co.uk",
+  "headers": {
+    "Referer": "https://www.redeyerecords.co.uk/home/"
+  },
+  "selectors": {
+    "artists": "#vpArtists.plArtist",
+    "title": "#vpArtists.plArtist",
+    "price": "#vpBuyRow",
+    "available": ".vpBuyButton"
+  },
+  "defaultReturnValue": {
+    "artists": null,
+    "title": null,
+    "price": "0",
+    "match": false,
+    "available": false
+  }
+}

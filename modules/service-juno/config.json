@@ -5,5 +5,12 @@
     "title": ".pl-info .vi-text:nth-of-type(4)",
     "price": ".pl-big-price .price_lrg",
     "available": ".pl-big-price .text-green"
+  },
+  "defaultReturnValue": {
+    "artists": null,
+    "title": null,
+    "price": "0",
+    "match": false,
+    "available": false
   }
 }
