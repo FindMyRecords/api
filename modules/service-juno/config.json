@@ -1,0 +1,9 @@
+{
+  "baseURL": "https://www.juno.co.uk/search/?q[all][]=",
+  "selectors": {
+    "artists": ".pl-info .vi-text:nth-of-type(2)",
+    "title": ".pl-info .vi-text:nth-of-type(4)",
+    "price": ".pl-big-price .price_lrg",
+    "available": ".pl-big-price .text-green"
+  }
+}

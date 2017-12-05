@@ -1,0 +1,19 @@
+{
+  "name": "findmyrecords-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "modules/*"
+  ],
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "express": "^4.16.2"
+  }
+}
