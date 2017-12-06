@@ -1,4 +1,5 @@
 import Hapi from 'hapi';
+import logger from '@findmyrecords/logger';
 
 import getReference from './actions/getReference';
 
@@ -12,11 +13,10 @@ server.route(getReference);
 async function start() {
   try {
     await server.start();
-  }
-  catch (err) {
+  } catch (err) {
     process.exit(1);
   }
-  console.log('Server running at:', server.info.uri);
-};
-  
+  logger.info('Server Redeye running at:', server.info.uri);
+}
+
 start();

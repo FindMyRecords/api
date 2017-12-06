@@ -2,6 +2,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import flatten from 'lodash.flatten';
 import Joi from 'joi';
+import logger from '@findmyrecords/logger';
 import { baseURL, selectors, defaultReturnValue } from '../../config.json';
 
 const client = axios.create({ baseURL });
@@ -18,7 +19,7 @@ function processResultItem(item, reference) {
   const match = flatten([reference.artists]).reduce(
     (acc, artist) => artists.includes(artist.toLowerCase()) && acc,
     true,
-  ) && title.includes(reference.title.toUpperCase());
+  ) && title.includes(reference.title.toLowerCase());
   return {
     artists, title, available, price, match,
   };
@@ -33,10 +34,12 @@ async function handler({ query }) {
       .get()
       .find(item => item.match);
     if (match) {
+      logger.info(JSON.stringify(match));
       return match;
     }
     return defaultReturnValue;
   } catch (err) {
+    logger.error(err);
     return defaultReturnValue;
   }
 }

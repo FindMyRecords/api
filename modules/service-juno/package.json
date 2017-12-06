@@ -13,6 +13,7 @@
     "start": "node lib/index.js"
   },
   "dependencies": {
+    "@findmyrecords/logger": "file:../../shared/logger",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

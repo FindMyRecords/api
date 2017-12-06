@@ -1,7 +1,7 @@
 {
-  "name": "service-techno-import",
+  "name": "service-redeye",
   "version": "1.0.0",
-  "description": "Techno Import's service of FindMyRecords",
+  "description": "Redeye Records' service of FindMyRecords",
   "main": "lib",
   "author": "Elliot Maincourt <e.maincourt@gmail.com>",
   "license": "MIT",
@@ -13,6 +13,7 @@
     "start": "node lib/index.js"
   },
   "dependencies": {
+    "@findmyrecords/logger": "file:../../shared/logger",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

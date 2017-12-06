@@ -1,7 +1,7 @@
 import axios from 'axios';
-import Boom from 'boom';
 import Joi from 'joi';
 import cheerio from 'cheerio';
+import logger from '@findmyrecords/logger';
 import { baseURL, selectors, headers, defaultReturnValue } from '../../config.json';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -25,7 +25,7 @@ function processResultItem(item) {
 
 async function handler({ query }) {
   try {
-    const { url } = (await client.get('/asp/ajax-artist.asp', {
+    const match = (await client.get('/asp/ajax-artist.asp', {
       params: {
         q: query.artists.toString(),
       },
@@ -35,12 +35,15 @@ async function handler({ query }) {
       .find(item =>
         item.secondary.toLowerCase().includes(query.artists.toString().toLowerCase())
         && item.primary.toLowerCase().includes(query.title.toLowerCase()));
-    if (url) {
-      const $ = cheerio.load((await axios.get(url)).data);
-      return processResultItem($('body'));
+    if (match && match.url) {
+      const $ = cheerio.load((await axios.get(match.url)).data);
+      const result = processResultItem($('body'));
+      logger.info(JSON.stringify(result));
+      return result;
     }
     return defaultReturnValue;
   } catch (err) {
+    logger.error(err);
     return defaultReturnValue;
   }
 }
@@ -62,8 +65,8 @@ export default {
     response: {
       status: {
         200: {
-          artists: Joi.string().required(),
-          title: Joi.string().required(),
+          artists: Joi.string().required().allow(null),
+          title: Joi.string().required().allow(null),
           available: Joi.bool().required(),
           price: Joi.string().required(),
           match: Joi.bool().required(),
