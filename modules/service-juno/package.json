@@ -9,11 +9,11 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --ignore src/utils",
     "start": "node lib/index.js"
   },
   "dependencies": {
-    "@findmyrecords/logger": "file:../../shared/logger",
+    "@findmyrecords/logger": "file:./src/utils/logger",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
