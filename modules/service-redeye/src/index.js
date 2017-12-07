@@ -6,6 +6,10 @@ import getReference from './actions/getReference';
 const server = Hapi.server({
   host: '0.0.0.0',
   port: 3002,
+  cors: {
+    origin: ['*'],
+    additionalHeaders: ['token'],
+  },
 });
 
 server.route(getReference);

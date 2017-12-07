@@ -2,14 +2,14 @@
   "name": "service-hhv",
   "version": "1.0.0",
   "description": "HHV's service of FindMyRecords",
-  "main": "lib",
+  "main": "dist",
   "author": "Elliot Maincourt <e.maincourt@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "babel src -d lib --ignore src/utils",
+    "build": "babel src -d dist --ignore src/utils",
     "start": "node lib/index.js"
   },
   "dependencies": {
@@ -30,10 +30,12 @@
     "lodash.flatten": "^4.4.0"
   },
   "devDependencies": {
+    "babel-jest": "^21.2.0",
     "eslint": "^4.12.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "jest": "^21.2.1"
   }
 }
