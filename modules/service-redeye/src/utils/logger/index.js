@@ -1,6 +1,6 @@
-var winston = require('winston');
-require('winston-loggly-bulk');
- 
+import winston from 'winston';
+import 'winston-loggly-bulk';
+
 winston.add(winston.transports.Loggly, {
   token: process.env.LOGGLY_TOKEN,
   subdomain: 'emaincourt',
@@ -9,4 +9,4 @@ winston.add(winston.transports.Loggly, {
   level: 'info',
 });
 
-module.exports = winston;
+export default winston;
