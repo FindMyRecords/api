@@ -6,9 +6,6 @@
   "author": "Elliot Maincourt <e.maincourt@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
     "build": "babel src -d dist --ignore src/utils",
     "start": "node lib/index.js"
   },
