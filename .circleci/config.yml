@@ -39,3 +39,9 @@ jobs:
       - run: cd service-redeye && docker build -t service-redeye .
       - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push findmyrecords/service-redeye
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy
