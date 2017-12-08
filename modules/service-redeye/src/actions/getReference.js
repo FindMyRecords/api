@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Joi from 'joi';
 import cheerio from 'cheerio';
-import logger from '@findmyrecords/logger';
+import logger from '../utils/logger';
 import { baseURL, selectors, headers, defaultReturnValue } from '../../config.json';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';

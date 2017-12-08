@@ -2,7 +2,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import flatten from 'lodash.flatten';
 import Joi from 'joi';
-import logger from '@findmyrecords/logger';
+import logger from '../utils/logger';
 import { baseURL, selectors, defaultReturnValue } from '../../config.json';
 
 const client = axios.create({ baseURL });

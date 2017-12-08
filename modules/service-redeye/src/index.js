@@ -1,5 +1,5 @@
 import Hapi from 'hapi';
-import logger from '@findmyrecords/logger';
+import logger from './utils/logger';
 
 import getReference from './actions/getReference';
 

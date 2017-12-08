@@ -10,7 +10,6 @@
     "start": "node lib/index.js"
   },
   "dependencies": {
-    "@findmyrecords/logger": "file:./src/utils/logger",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -24,15 +23,15 @@
     "eslint-config-airbnb": "^16.1.0",
     "hapi": "^17.1.1",
     "joi": "^13.0.2",
-    "lodash.flatten": "^4.4.0"
+    "lodash.flatten": "^4.4.0",
+    "winston": "^2.4.0",
+    "winston-loggly-bulk": "^2.0.1"
   },
   "devDependencies": {
-    "babel-jest": "^21.2.0",
     "eslint": "^4.12.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.5.1",
-    "jest": "^21.2.1"
+    "eslint-plugin-react": "^7.5.1"
   }
 }
