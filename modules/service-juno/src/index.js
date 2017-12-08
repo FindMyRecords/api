@@ -4,12 +4,8 @@ import logger from '@findmyrecords/logger';
 import getReference from './actions/getReference';
 
 const server = Hapi.server({
-  host: '0.0.0.0',
+  host: 'localhost',
   port: 3001,
-  cors: {
-    origin: ['*'],
-    additionalHeaders: ['token'],
-  },
 });
 
 server.route(getReference);
