@@ -6,8 +6,8 @@
   "author": "Elliot Maincourt <e.maincourt@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d dist --ignore src/utils",
-    "start": "node lib/index.js"
+    "build": "babel src -d dist",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "axios": "^0.17.1",

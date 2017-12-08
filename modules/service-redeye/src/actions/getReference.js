@@ -23,7 +23,7 @@ function processResultItem(item) {
   };
 }
 
-async function handler({ query }, reply) {
+async function handler({ query }) {
   try {
     const match = (await client.get('/asp/ajax-artist.asp', {
       params: {
@@ -39,12 +39,12 @@ async function handler({ query }, reply) {
       const $ = cheerio.load((await axios.get(match.url)).data);
       const result = processResultItem($('body'));
       logger.info(JSON.stringify(result));
-      return reply(result);
+      return result;
     }
-    return reply(defaultReturnValue);
+    return defaultReturnValue;
   } catch (err) {
     logger.error(err);
-    return reply(defaultReturnValue);
+    return defaultReturnValue;
   }
 }
 

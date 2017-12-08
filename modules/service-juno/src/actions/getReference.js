@@ -25,7 +25,7 @@ function processResultItem(item, reference) {
   };
 }
 
-async function handler({ query }, reply) {
+async function handler({ query }) {
   try {
     const qs = [flatten([query.artists]), query.title].join('+').replace(/ /g, '+');
     const $ = cheerio.load((await client.get(qs)).data);
@@ -35,12 +35,12 @@ async function handler({ query }, reply) {
       .find(item => item.match);
     if (match) {
       logger.info(JSON.stringify(match));
-      return reply(match);
+      return match;
     }
-    return reply(defaultReturnValue);
+    return defaultReturnValue;
   } catch (err) {
     logger.error(err);
-    return reply(defaultReturnValue);
+    return defaultReturnValue;
   }
 }
 

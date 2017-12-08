@@ -1,10 +1,10 @@
 import Hapi from 'hapi';
 import logger from './utils/logger';
 
-import getReference from './utils/getReference';
+import getReference from './actions/getReference';
 
 const server = Hapi.server({
-  host: 'localhost',
+  host: '0.0.0.0',
   port: 3001,
 });
 
