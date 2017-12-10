@@ -23,7 +23,7 @@ We use both [CodeShip](https://codeship.com/) for CI and [CircleCI](https://circ
 
 When CodeShip is in charge of installing the dependencies, building the project with [BabelJS](https://babeljs.io/) and runs the tests with the delightful [Jest](https://facebook.github.io/jest/) testing framework, CircleCI is in charge of building the new Docker image at each commit and to push it to [DockerHub](https://hub.docker.com/u/findmyrecords/dashboard/).
 
-<p align="center"><img src="https://preview.ibb.co/jrRHHw/Screen_Shot_2017_12_10_at_12_53_46.png" width="50%" height="auto" style="margin-left: 50%" /></p>
+<p align="center"><img src="https://preview.ibb.co/czrnjb/Screen_Shot_2017_12_10_at_13_06_13.png" width="50%" height="auto" style="margin-left: 50%" /></p>
 <p align="center"><img src="https://preview.ibb.co/hQPq4b/Screen_Shot_2017_12_10_at_13_07_13.png" width="50%" height="auto" style="margin-left: 50%" /></p>
 
 We then only need to upgrade the image in use by our services at DigitalOcean running `docker service update --image findmyrecords/service-juno service-juno` for instance.
