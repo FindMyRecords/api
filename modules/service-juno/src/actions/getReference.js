@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import flatten from 'lodash.flatten';
 import Joi from 'joi';
 import logger from '../utils/logger';
-import { baseURL, selectors, defaultReturnValue } from '../../config.json';
+import { baseURL, junoURL, selectors, defaultReturnValue } from '../../config.json';
 
 const client = axios.create({ baseURL });
 
@@ -16,12 +16,13 @@ function processResultItem(item, reference) {
   const title = getText(item, selectors.title);
   const price = getText(item, selectors.price);
   const available = getText(item, selectors.available).includes('in stock');
+  const url = `${junoURL}${item.find(selectors.url).attr('href')}`;
   const match = flatten([reference.artists]).reduce(
     (acc, artist) => artists.includes(artist.toLowerCase()) && acc,
     true,
   ) && title.includes(reference.title.toLowerCase());
   return {
-    artists, title, available, price, match,
+    artists, title, available, price, match, url,
   };
 }
 
@@ -73,6 +74,7 @@ export default {
           available: Joi.bool().required(),
           price: Joi.string().required(),
           match: Joi.bool().required(),
+          url: Joi.string().required().allow(null),
         },
       },
     },
