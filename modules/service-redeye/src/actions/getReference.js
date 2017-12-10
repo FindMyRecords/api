@@ -52,6 +52,13 @@ export default {
   method: 'GET',
   path: '/reference',
   config: {
+    cors: {
+      origin: ['*'],
+      headers: ['Origin', 'X-Requested-With', 'Content-Type'],
+      credentials: true,
+      additionalHeaders: ['access-control-allow-headers', 'Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type'],
+      additionalExposedHeaders: ['access-control-allow-headers', 'Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type'],
+    },
     validate: {
       query: {
         artists: Joi.alternatives().try(
